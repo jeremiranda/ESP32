@@ -12,7 +12,7 @@ from config import *
 from sensors import ADS1115, promedio_lectura, calcular_rs
 from validations import validar_sensor
 from display import init_display, mostrar_error, mostrar_datos
-from webserver import iniciar_servidor
+from webserver import iniciar_servidor, gc
 from calibration import calibrar
 from gas_model import ratio_a_ppm, MQ2_CURVA, MQ3_CURVA, MQ135_CURVA
 from climate import leer_clima
@@ -275,4 +275,9 @@ while True:
 
     print("Estado:", estado)
     
-    time.sleep(2)
+    gc.collect()
+
+    #time.sleep(2)
+    
+    for _ in range(20):
+        time.sleep(0.1)

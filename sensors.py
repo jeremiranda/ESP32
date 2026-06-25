@@ -31,6 +31,6 @@ def promedio_lectura(ads, canal):
 
 
 def calcular_rs(vout, RL, VCC):
-    if vout == 0:
+    if vout <= 0:
         return 0
     return RL * (VCC - vout) / vout

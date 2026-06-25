@@ -60,7 +60,10 @@ print("IP:", ip)
 devices = i2c.scan()
 print("I2C devices:", devices)
 
-ads = ADS1115(i2c, devices[-1]) if len(devices) > 1 else None
+if 0x48 in devices:
+    ads = ADS1115(i2c)
+else:
+    ads = None
 
 if ads:
     Ro = calibrar(oled, ads, promedio_lectura)
@@ -193,9 +196,12 @@ while True:
     mq3_s = suavizar(ratio2, hist_r_mq3)
     mq135_s = suavizar(ratio3, hist_r_mq135)
 
-    ppm2 = ratio_a_ppm(ratio1, MQ2_CURVA)
-    ppm3 = ratio_a_ppm(ratio2, MQ3_CURVA)
-    ppm135 = ratio_a_ppm(ratio3, MQ135_CURVA)
+    #ppm2 = ratio_a_ppm(ratio1, MQ2_CURVA)
+    #ppm3 = ratio_a_ppm(ratio2, MQ3_CURVA)
+    #ppm135 = ratio_a_ppm(ratio3, MQ135_CURVA)
+    ppm2 = ratio_a_ppm(mq2_s, MQ2_CURVA)
+    ppm3 = ratio_a_ppm(mq3_s, MQ3_CURVA)
+    ppm135 = ratio_a_ppm(mq135_s, MQ135_CURVA)
 
     # =====================
     # ESTADO

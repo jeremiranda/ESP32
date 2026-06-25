@@ -246,6 +246,13 @@ async function update(){
             document.body.style.background = "#f2f2f2";
         }
 
+        else if (d.estado.startsWith("ALR")) {
+
+            estadoBox.classList.add("alerta");
+            document.body.style.background = "#fff3e0";
+
+        }
+
         else if(d.estado === "MULTIGAS"){
 
             estadoBox.classList.add("multi");
@@ -254,8 +261,7 @@ async function update(){
 
         else{
 
-            estadoBox.classList.add("alerta");
-            document.body.style.background = "#fff3e0";
+            document.body.style.background = "#eeeeee";
         }
 
     }catch(err){

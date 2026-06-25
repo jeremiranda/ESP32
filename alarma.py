@@ -50,7 +50,7 @@ def alarma_estado(estado):
     # =====================
     # ALERTA SIMPLE
     # =====================
-    elif "ALERTA" in estado:
+    elif estado.startswith("ALR"):
 
         # 2 beeps medios
         beep(2, 0.15)
